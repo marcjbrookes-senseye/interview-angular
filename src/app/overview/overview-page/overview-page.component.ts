@@ -7,11 +7,10 @@ import { ServerListComponent } from '../server-list/server-list.component';
   templateUrl: './overview-page.component.html',
   styleUrls: ['./overview-page.component.scss'],
   standalone: true,
-  imports: [ServerListComponent],
+  imports: [ ServerListComponent ],
 })
 export class OverviewPageComponent {
   private readonly apiService = inject(ApiService);
 
   protected readonly allServers = this.apiService.servers;
-
 }
