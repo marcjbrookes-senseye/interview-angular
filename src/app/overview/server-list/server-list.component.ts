@@ -1,5 +1,4 @@
-import { CommonModule } from '@angular/common';
-import { Component, Input } from '@angular/core';
+import { Component, input } from '@angular/core';
 import { IServer } from '../../models/server';
 
 @Component({
@@ -7,10 +6,7 @@ import { IServer } from '../../models/server';
   templateUrl: './server-list.component.html',
   styleUrls: ['./server-list.component.scss'],
   standalone: true,
-  imports: [
-    CommonModule,
-  ],
 })
 export class ServerListComponent {
-  @Input() servers: IServer[] = [];
+  readonly servers = input.required<readonly IServer[]>();
 }

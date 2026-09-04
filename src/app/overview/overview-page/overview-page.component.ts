@@ -1,8 +1,5 @@
-import { CommonModule } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Component, inject } from '@angular/core';
 import { ApiService } from '../../api/api.service';
-import { IServer } from '../../models/server';
 import { ServerListComponent } from '../server-list/server-list.component';
 
 @Component({
@@ -10,19 +7,11 @@ import { ServerListComponent } from '../server-list/server-list.component';
   templateUrl: './overview-page.component.html',
   styleUrls: ['./overview-page.component.scss'],
   standalone: true,
-  imports: [
-    CommonModule,
-    ServerListComponent,
-  ],
+  imports: [ServerListComponent],
 })
-export class OverviewPageComponent implements OnInit {
+export class OverviewPageComponent {
+  private readonly apiService = inject(ApiService);
 
-  public allServers$: Observable<IServer[]>;
-
-  constructor(private apiService: ApiService) { }
-
-  ngOnInit(): void {
-    this.allServers$ = this.apiService.getAllServers$();
-  }
+  protected readonly allServers = this.apiService.servers;
 
 }

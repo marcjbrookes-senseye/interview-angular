@@ -1,5 +1,15 @@
 <div>
-  There are {{ servers.length }} servers.
+  There are {{ servers().length }} servers.
 </div>
 
-<!-- TODO: Show a list of servers here -->
+<ul>
+  @for (server of servers(); track server.id) {
+    <li>
+      <strong>{{ server.name }}</strong>
+      <span>{{ server.description }}</span>
+      <span>{{ server.isUp ? 'Up' : 'Down' }}</span>
+    </li>
+  } @empty {
+    <li>No servers found.</li>
+  }
+</ul>
